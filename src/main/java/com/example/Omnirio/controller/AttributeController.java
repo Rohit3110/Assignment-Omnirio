@@ -3,6 +3,7 @@ package com.example.Omnirio.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,8 @@ public class AttributeController {
 	@Autowired
 	AttribueRepository repo;
 
-	@GetMapping("/attribute/{id}")
+	@GetMapping(path="/attribute/{id}", consumes = "application/json", produces = "application/json")
+		
 	Attribute getAttribute(@PathVariable Long id) {
 
 		Optional<Attribute> att = attributeService.getAttributeById(id);
@@ -39,7 +41,7 @@ public class AttributeController {
 
 	}
 	
-	@PostMapping("/attribute")
+	@PostMapping(path="/attribute", consumes = "application/json", produces = "application/json")
 	Attribute getAttribute(@RequestBody Attribute attribute) {
 
 		Attribute att = repo.save(attribute);

@@ -34,7 +34,7 @@ public class CategoryController {
 	AttribueRepository attRepository;
 
 	// @CrossOrigin(origins = "http://localhost:9090")
-	@GetMapping("/category/{id}")
+	@GetMapping(path="/category/{id}" , consumes = "application/json", produces = "application/json")
 
 	Category getCategory(@PathVariable Long id) {
 
@@ -50,7 +50,7 @@ public class CategoryController {
 
 	}
 
-	@PutMapping("/category/{id}")
+	@PutMapping(path ="/category/{id}", consumes = "application/json", produces = "application/json")
 
 	Category updateCategory(@RequestBody Category newCategory, @PathVariable Long id) {
 		
