@@ -41,6 +41,22 @@ public class AttributeController {
 
 	}
 	
+	@GetMapping(path="/attribute/{id}", produces = "application/vnd.api.v2+json")
+	
+	Attribute getAttributeWithDiffVersion(@PathVariable Long id) {
+
+		Optional<Attribute> att = attributeService.getAttributeById(id);
+
+		if (!att.isPresent()) {
+			throw new ResourceNotFoundException(id);
+			// throw new InternalServiceError();
+		} else {
+
+			return att.get();
+		}
+
+	}
+	
 	@PostMapping(path="/attribute", consumes = "application/json", produces = "application/json")
 	Attribute getAttribute(@RequestBody Attribute attribute) {
 
